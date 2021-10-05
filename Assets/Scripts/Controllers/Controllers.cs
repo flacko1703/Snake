@@ -12,9 +12,11 @@ namespace Snake
             IMove mover = new PlayerMover(ServiceLocatorMonoBehaviour.GetService<CharacterController>());
         
             ServiceLocator.SetService(new PlayerController(mover));
+            ServiceLocator.SetService(new CameraController());
         
-            _executeControllers = new IExecute[1];
+            _executeControllers = new IExecute[5];
             _executeControllers[0] = ServiceLocator.Resolve<PlayerController>();
+            _executeControllers[1] = ServiceLocator.Resolve<CameraController>();
         }
     
         public IExecute this[int index] => _executeControllers[index];
@@ -30,6 +32,7 @@ namespace Snake
             }
         
             ServiceLocator.Resolve<PlayerController>().On();
+            ServiceLocator.Resolve<CameraController>().On();
         
         }
     }

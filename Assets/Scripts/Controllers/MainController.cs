@@ -15,7 +15,7 @@ namespace Snake
         {
             for (var i = 0; i < _controllers.Length; i++)
             {
-                _controllers[i].Execute();
+                _controllers[i]?.Execute();
             }
         }
     }
