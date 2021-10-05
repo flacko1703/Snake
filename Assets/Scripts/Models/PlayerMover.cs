@@ -23,11 +23,10 @@ namespace Snake
 
         private void MovePlayer()
         {
-            _inputAxis = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-            Vector3 desiredMove = _instance.forward * _inputAxis.y + _instance.right * _inputAxis.x;
+            _inputAxis = new Vector2(Input.GetAxis("Horizontal"), 0);
+            Vector3 desiredMove = _instance.right * _inputAxis.x + _instance.forward + _instance.up;
             _moveDirection.x = desiredMove.x * _moveSpeed;
-            _moveDirection.y = desiredMove.y * _moveSpeed;
-        
+            _moveDirection.z = desiredMove.y * _moveSpeed;
             _characterController.Move(_moveDirection * Time.deltaTime);
         }
     }
