@@ -10,6 +10,7 @@ namespace Snake
         private CameraMover _cameraMover;
         private float _spawnCooldown = 1f;
         private float _lastTime;
+        private Vector3 _spawnPos;
         
         private void SpawnPlatform()
         {
@@ -17,7 +18,7 @@ namespace Snake
             {
                 Vector3 spawnPos = _camera.transform.position;
                 var platform = Pool.Instance.GetFromPool();
-                platform.transform.position = new Vector3(_camera.transform.position.x, 0, _camera.transform.position.z + 10);
+                platform.transform.position = new Vector3(0, 0, _camera.transform.position.z + 10);
                 Debug.Log("Spawned");
             }
         }
@@ -45,6 +46,7 @@ namespace Snake
 
         public void Initialize()
         {
+            _spawnPos = new Vector3();
             _cameraMover = ServiceLocatorMonoBehaviour.GetService<CameraMover>();
         }
     }

@@ -15,6 +15,7 @@ namespace Snake
         {
             base.Awake();
             _camera = Camera.main;
+            _cameraPos = new Vector3();
             _distance = _camera.transform.position - _targetPosition.transform.position;
             
         }
@@ -22,7 +23,7 @@ namespace Snake
 
         public void FollowPlayer()
         {
-            _cameraPos = new Vector3(0,
+            _cameraPos = new Vector3(3,
                 _targetPosition.transform.position.y + _distance.y,
                 _targetPosition.transform.position.z + _distance.z);
             _camera.transform.position = _cameraPos;
