@@ -1,7 +1,4 @@
-﻿using Unity.VisualScripting;
-using UnityEngine;
-
-namespace Snake
+﻿namespace Snake
 {
     public class CameraController : BaseController, IExecute, IInitialize, IMove
     {
@@ -17,7 +14,6 @@ namespace Snake
         public void Move()
         {
             _cameraMover.FollowPlayer();
-            Debug.Log("Moving..");
         }
 
         public void Initialize()

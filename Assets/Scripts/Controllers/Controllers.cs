@@ -13,10 +13,12 @@ namespace Snake
         
             ServiceLocator.SetService(new PlayerController(mover));
             ServiceLocator.SetService(new CameraController());
+            ServiceLocator.SetService(new PlatformSpawnerController());
         
-            _executeControllers = new IExecute[5];
+            _executeControllers = new IExecute[6];
             _executeControllers[0] = ServiceLocator.Resolve<PlayerController>();
             _executeControllers[1] = ServiceLocator.Resolve<CameraController>();
+            _executeControllers[2] = ServiceLocator.Resolve<PlatformSpawnerController>();
         }
     
         public IExecute this[int index] => _executeControllers[index];
@@ -33,6 +35,8 @@ namespace Snake
         
             ServiceLocator.Resolve<PlayerController>().On();
             ServiceLocator.Resolve<CameraController>().On();
+            ServiceLocator.Resolve<PlatformSpawnerController>().On();
+            
         
         }
     }
