@@ -11,6 +11,8 @@ namespace Snake
 
         public Vector3 Distance => _distance;
 
+        public Vector3 CameraPos => _cameraPos;
+
         protected override void Awake()
         {
             base.Awake();
@@ -26,7 +28,7 @@ namespace Snake
             _cameraPos = new Vector3(3,
                 _targetPosition.transform.position.y + _distance.y,
                 _targetPosition.transform.position.z + _distance.z);
-            _camera.transform.position = _cameraPos;
+            _camera.transform.position = CameraPos;
         }
 
     }
