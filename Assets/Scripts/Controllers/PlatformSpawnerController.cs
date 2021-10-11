@@ -28,7 +28,7 @@ namespace Snake
                 var platform = Pool.Instance.GetFromPool();
                 _platforms.Add(platform);
                 platform.transform.position = new Vector3(0, 0, _camera.transform.position.z + 10);
-                if (_platforms.Count >= 3)
+                if (_platforms.Count >= 2)
                 {
                     for (int i = 0; i < _platforms.Count - 1; i++)
                     {
