@@ -22,29 +22,24 @@ namespace Snake
         
         private void SpawnPlatform()
         {
-            if (CanSpawn())
+            if (CanSpawn() && _platforms.Count <= 3)
             {
                 Vector3 spawnPos = _camera.transform.position;
-                if (_platforms.Count < 3)
-                {
-                    var platform = Pool.Instance.GetFromPool();
-                    _platforms.Add(platform);
-                    platform.transform.position = new Vector3(0, 0, _camera.transform.position.z + 10);
-                }
-                
-                
-                
+                var platform = Pool.Instance.GetFromPool();
+                _platforms.Add(platform);
+                platform.transform.position = new Vector3(0, 0, _camera.transform.position.z + 10);
                 if (_platforms.Count >= 3)
                 {
                     for (int i = 0; i < _platforms.Count - 1; i++)
                     {
-                        ClearUnusedPlatforms(_platforms.ElementAt(i));
+                        Pool.Instance.AddToPool(_platforms.ElementAt(i));
                     }
 
-                    _platforms.Clear();
+                    _platforms.RemoveRange(0, _platforms.Count - 1);
+
                 }
-                
             }
+            
         }
 
         public void Execute() 
@@ -63,6 +58,20 @@ namespace Snake
             else
             {
                 _lastTime = 0;
+                return true;
+            }
+        }
+
+        private bool CanClear()
+        {
+            if (_destroyTime <= _spawnCooldown)
+            {
+                _destroyTime += Time.deltaTime;
+                return false;
+            }
+            else
+            {
+                _destroyTime = 0;
                 return true;
             }
         }
