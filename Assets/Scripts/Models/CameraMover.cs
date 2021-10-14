@@ -25,7 +25,7 @@ namespace Snake
 
         public void FollowPlayer()
         {
-            _cameraPos = new Vector3(3,
+            _cameraPos = new Vector3(2,
                 _targetPosition.transform.position.y + _distance.y,
                 _targetPosition.transform.position.z + _distance.z);
             _camera.transform.position = CameraPos;
